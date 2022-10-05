@@ -147,3 +147,31 @@ body {
 .winning-message.show {
     display: flex;
 }
+
+@media (max-width : 600px) {
+    .game-board {
+        width: 60vw;
+        height: 60vw;
+        margin-top: 40vw;
+    }
+
+    .grid-items {
+        width: calc((60vw - 40px) / 3);
+        height: calc((60vw - 40px) / 3);
+        border-radius: 0;
+    }
+
+    .grid-items:nth-child(1) {
+        border-top-left-radius: 20px;
+    }
+
+    .grid-items:nth-child(3) {
+        border-top-right-radius: 20px;
+    }
+    .grid-items:nth-child(7) {
+        border-bottom-left-radius: 20px;
+    }
+    .grid-items:nth-child(9) {
+        border-bottom-right-radius: 20px;
+    }
+}
