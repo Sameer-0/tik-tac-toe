@@ -1,0 +1,149 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --width: 30vw;
+    --height: 30vw;
+}
+
+body {
+    margin: 0;
+}
+
+.game-board {
+    width: var(--width);
+    display: grid;
+    margin: auto;
+    height: var(--height);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+    margin-top: calc((var(--height) * .8)/2);
+    background-color: rgb(115, 201, 227);
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.grid-items {
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(85, 128, 194, 0.8);
+    width: calc((var(--width) - 40px) / 3);
+    height: calc((var(--height) - 40px) / 3);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+
+.grid-items.x,
+.grid-items.o {
+    cursor: not-allowed;
+}
+
+.grid-items.x::before,
+.grid-items.x::after {
+    background-color: black;
+}
+
+.grid-items.o::before,
+.grid-items.o::after {
+    background-color: black;
+}
+
+.game-board.x .grid-items:not(.x):not(.o):hover::before,
+.game-board.x .grid-items:not(.x):not(.o):hover::after {
+    background-color: rgb(157, 168, 179);
+}
+
+.game-board.o .grid-items:not(.x):not(.o):hover::before,
+.game-board.o .grid-items:not(.x):not(.o):hover::after {
+    background-color: rgb(157, 168, 179);
+}
+
+
+.grid-items.x::before,
+.grid-items.x::after,
+.game-board.x .grid-items:not(.x):not(.o):hover::before,
+.game-board.x .grid-items:not(.x):not(.o):hover::after {
+    content: '';
+    position: absolute;
+    width: calc((var(--width) * .3) * .15);
+    height: calc(var(--height) * .3);
+}
+
+.grid-items.x::before,
+.game-board.x .grid-items:not(.x):not(.o):hover::before {
+    transform: rotate(45deg);
+}
+
+.grid-items.x::after,
+.game-board.x .grid-items:not(.x):not(.o):hover::after {
+    transform: rotate(-45deg);
+}
+
+.grid-items.o::before,
+.grid-items.o::after,
+.game-board.o .grid-items:not(.x):not(.o):hover::before,
+.game-board.o .grid-items:not(.x):not(.o):hover::after {
+    content: '';
+    position: absolute;
+    width: calc((var(--width) * .3));
+    height: calc(var(--height) * .3);
+}
+
+.grid-items.o::before,
+.game-board.o .grid-items:not(.x):not(.o):hover::before {
+    width: calc((var(--width) * .25));
+    height: calc(var(--height) * .25);
+    border-radius: 50%;
+
+}
+
+.grid-items.o::after,
+.game-board.o .grid-items:not(.x):not(.o):hover::after {
+    width: calc((var(--width) * .25) * .8);
+    height: calc((var(--height) * .25) * .8);
+    background-color: rgb(217, 239, 246);
+    border-radius: 50%;
+}
+
+.winning-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+    flex-direction: column;
+    display: none;
+}
+
+.winning-message button {
+    margin-top: 20px;
+    font-size: 25px;
+    background-color: rgb(86, 203, 250);
+    border-radius: 10px;
+    padding: 7px 10px;
+    cursor: pointer;
+    transition: all 500ms ease-in-out;
+}
+
+.winning-message button:hover {
+    transform: scale(1.5) ;
+}
+
+.winning-message.show {
+    display: flex;
+}
